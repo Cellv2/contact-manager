@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import Contact from "./Contact";
 
 export class Contacts extends Component {
     constructor() {
@@ -31,7 +32,12 @@ export class Contacts extends Component {
         return (
             <div>
                 {contacts.map(contact => (
-                    <h1>{contact.name}</h1>
+                    <Contact
+                        key={contact.id}
+                        name={contact.name}
+                        email={contact.email}
+                        phone={contact.phone}
+                    />
                 ))}
             </div>
         );
