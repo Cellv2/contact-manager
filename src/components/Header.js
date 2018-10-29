@@ -9,4 +9,7 @@ const Header = props => {
     );
 };
 
+//if 'branding' isn't passed in, MyApp will be used instead
+Header.defaultProps = { branding: "MyApp" };
+
 export default Header;
