@@ -2,6 +2,12 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 
 class Contact extends Component {
+    constructor() {
+        super();
+        this.state = {};
+
+        this.onShowClick = this.onShowClick.bind(this);
+    }
     state = {};
     onShowClick() {
         console.log(this.state);
@@ -14,7 +20,7 @@ class Contact extends Component {
                 <h4>
                     {name}{" "}
                     <i
-                        onClick={this.onShowClick.bind(this)}
+                        onClick={this.onShowClick}
                         className="fas fa-sort-down"
                     />
                 </h4>
