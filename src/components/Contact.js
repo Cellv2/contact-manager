@@ -4,8 +4,9 @@ import PropTypes from "prop-types";
 class Contact extends Component {
     state = {};
 
-    onShowClick = () => {
-        console.log(this.state);
+    onShowClick = (id, name, e) => {
+        console.log(id);
+        console.log(name);
     };
 
     render() {
@@ -16,7 +17,7 @@ class Contact extends Component {
                 <h4>
                     {name}{" "}
                     <i
-                        onClick={this.onShowClick}
+                        onClick={this.onShowClick.bind(this, "id1", name)}
                         className="fas fa-sort-down"
                     />
                 </h4>
