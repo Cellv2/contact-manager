@@ -2,16 +2,12 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 
 class Contact extends Component {
-    constructor() {
-        super();
-        this.state = {};
-
-        this.onShowClick = this.onShowClick.bind(this);
-    }
     state = {};
-    onShowClick() {
+
+    onShowClick = () => {
         console.log(this.state);
-    }
+    };
+
     render() {
         const { name, email, phone } = this.props.contact;
 
