@@ -25,12 +25,30 @@ export class Contacts extends Component {
         ]
     };
 
+    deleteContact = id => {
+        //copy state - state is immutable
+        const { contacts } = this.state;
+
+        //filter out all contacts that do NOT have the id of the one we're deleting
+        const newContacts = contacts.filter(contact => contact.id !== id);
+
+        //set current state's 'contacts' to the filtered out contacts above
+        this.setState({ contacts: newContacts });
+    };
+
     render() {
         const { contacts } = this.state;
         return (
             <React.Fragment>
                 {contacts.map(contact => (
-                    <Contact key={contact.id} contact={contact} />
+                    <Contact
+                        key={contact.id}
+                        contact={contact}
+                        deleteClickHandler={this.deleteContact.bind(
+                            this,
+                            contact.id
+                        )}
+                    />
                 ))}
             </React.Fragment>
         );
