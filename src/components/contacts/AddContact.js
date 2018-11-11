@@ -52,6 +52,8 @@ export class AddContact extends Component {
 
         //clear state on form submit
         this.setState({ name: "", email: "", phone: "", errors: {} });
+
+        this.props.history.push("/"); //redirect to home page on push
     };
 
     render() {
