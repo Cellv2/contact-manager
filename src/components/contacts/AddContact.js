@@ -8,7 +8,8 @@ export class AddContact extends Component {
     state = {
         name: "",
         email: "",
-        phone: ""
+        phone: "",
+        errors: {}
     };
 
     //without the onChange event handler, this would be a controlled component
@@ -22,6 +23,23 @@ export class AddContact extends Component {
 
         const { name, email, phone } = this.state;
 
+        //check for errors
+        //object will be blank if no errors, so error will not show
+        if (name === "") {
+            this.setState({ errors: { name: "Name is required" } });
+            return;
+        }
+
+        if (email === "") {
+            this.setState({ errors: { email: "E-Mail is required" } });
+            return;
+        }
+        
+        if (phone === "") {
+            this.setState({ errors: { phone: "Phone Number is required" } });
+            return;
+        }
+
         //ES6 syntax, if key and value are the same, you don't need to do name:name, email:email etc.
         const newContact = {
             id: uuid(),
@@ -33,11 +51,11 @@ export class AddContact extends Component {
         dispatch({ type: "ADD_CONTACT", payload: newContact });
 
         //clear state on form submit
-        this.setState({ name: "", email: "", phone: "" });
+        this.setState({ name: "", email: "", phone: "", errors: {} });
     };
 
     render() {
-        const { name, email, phone } = this.state;
+        const { name, email, phone, errors } = this.state;
 
         return (
             <Consumer>
@@ -61,6 +79,7 @@ export class AddContact extends Component {
                                         placeholder="Enter Name"
                                         value={name}
                                         onChange={this.onChange}
+                                        error={errors.name}
                                     />
                                     <TextInputGroup
                                         label="E-Mail"
@@ -69,6 +88,7 @@ export class AddContact extends Component {
                                         placeholder="Enter E-Mail"
                                         value={email}
                                         onChange={this.onChange}
+                                        error={errors.email}
                                     />
                                     <TextInputGroup
                                         label="Phone"
@@ -76,6 +96,7 @@ export class AddContact extends Component {
                                         placeholder="Enter Phone Number"
                                         value={phone}
                                         onChange={this.onChange}
+                                        error={errors.phone}
                                     />
                                     <input
                                         type="submit"
