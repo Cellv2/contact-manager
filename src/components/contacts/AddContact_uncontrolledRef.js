@@ -1,24 +1,36 @@
 import React, { Component } from "react";
 
-export class AddContact extends Component {
-    state = {
-        name: "",
-        email: "",
-        phone: ""
-    };
+//this is an uncontrolled component example - the input is not connected with state
+//it uses props with defaultValue (rather than value) and refs in order to get information
+//good for default values (e.g. if you're using Redux and need something there but not tied to state)
 
-    //without the onChange event handler, this would be a controlled component
-    //this means you wouldn't be able to update the input field by typeing as the state is set in stone
-    //[e.target.name] accesses the name attr of the HTML element and plugs that in as the key, so provided the name attr and state key are identical, this will work
-    onChange = e => this.setState({ [e.target.name]: e.target.value });
+export class AddContact extends Component {
+    constructor(props) {
+        super(props);
+
+        this.nameInput = React.createRef();
+        this.emailInput = React.createRef();
+        this.phoneInput = React.createRef();
+    }
 
     onSubmit = e => {
         e.preventDefault();
-        console.log(this.state);
+        const contact = {
+            name: this.nameInput.current.value,
+            email: this.emailInput.current.value,
+            phone: this.phoneInput.current.value
+        };
+        console.log(contact);
+    };
+
+    static defaultProps = {
+        name: "Tester1",
+        email: "testEmail1@test.com",
+        phone: "123-456-7890"
     };
 
     render() {
-        const { name, email, phone } = this.state;
+        const { name, email, phone } = this.props;
         return (
             <div className="card mb-3">
                 <div className="card-header">Add Contact</div>
@@ -31,8 +43,8 @@ export class AddContact extends Component {
                                 name="name"
                                 className="form-control form-control-lg"
                                 placeholder="Enter Name"
-                                value={name}
-                                onChange={this.onChange}
+                                defaultValue={name}
+                                ref={this.nameInput}
                             />
                         </div>
                         <div className="form-group">
@@ -42,8 +54,8 @@ export class AddContact extends Component {
                                 name="email"
                                 className="form-control form-control-lg"
                                 placeholder="Enter E-Email"
-                                value={email}
-                                onChange={this.onChange}
+                                defaultValue={email}
+                                ref={this.emailInput}
                             />
                         </div>
                         <div className="form-group">
@@ -53,8 +65,8 @@ export class AddContact extends Component {
                                 name="phone"
                                 className="form-control form-control-lg"
                                 placeholder="Enter Phone Number"
-                                value={phone}
-                                onChange={this.onChange}
+                                defaultValue={phone}
+                                ref={this.phoneInput}
                             />
                         </div>
                         <input

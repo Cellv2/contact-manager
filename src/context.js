@@ -12,6 +12,11 @@ const reducer = (state, action) => {
                     contact => contact.id !== action.payload
                 )
             };
+        case "ADD_CONTACT":
+            return {
+                ...state, //gets initial state
+                contacts: [action.payload, ...state.contacts]  //adds new contact at the front of the array
+            };
         default:
             return state;
     }
