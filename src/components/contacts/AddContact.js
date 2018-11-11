@@ -30,6 +30,9 @@ export class AddContact extends Component {
         };
 
         dispatch({ type: "ADD_CONTACT", payload: newContact });
+
+        //clear state on form submit
+        this.setState({ name: "", email: "", phone: "" });
     };
 
     render() {
@@ -45,7 +48,10 @@ export class AddContact extends Component {
                             <div className="card-header">Add Contact</div>
                             <div className="card-body">
                                 <form
-                                    onSubmit={this.onSubmit.bind(this, dispatch)}
+                                    onSubmit={this.onSubmit.bind(
+                                        this,
+                                        dispatch
+                                    )}
                                 >
                                     <div className="form-group">
                                         <label htmlFor="name">Name</label>
