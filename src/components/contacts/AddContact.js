@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import uuid from "uuid";
 
 import { Consumer } from "../../context";
+import TextInputGroup from "../layout/TextInputGroup";
 
 export class AddContact extends Component {
     state = {
@@ -53,41 +54,29 @@ export class AddContact extends Component {
                                         dispatch
                                     )}
                                 >
-                                    <div className="form-group">
-                                        <label htmlFor="name">Name</label>
-                                        <input
-                                            type="text"
-                                            name="name"
-                                            className="form-control form-control-lg"
-                                            placeholder="Enter Name"
-                                            value={name}
-                                            onChange={this.onChange}
-                                        />
-                                    </div>
-                                    <div className="form-group">
-                                        <label htmlFor="email">E-Mail</label>
-                                        <input
-                                            type="email"
-                                            name="email"
-                                            className="form-control form-control-lg"
-                                            placeholder="Enter E-Email"
-                                            value={email}
-                                            onChange={this.onChange}
-                                        />
-                                    </div>
-                                    <div className="form-group">
-                                        <label htmlFor="phone">
-                                            Phone Number
-                                        </label>
-                                        <input
-                                            type="text"
-                                            name="phone"
-                                            className="form-control form-control-lg"
-                                            placeholder="Enter Phone Number"
-                                            value={phone}
-                                            onChange={this.onChange}
-                                        />
-                                    </div>
+                                    {/* do not need to pass in type for anything other than email as text is the default for type */}
+                                    <TextInputGroup
+                                        label="Name"
+                                        name="name"
+                                        placeholder="Enter Name"
+                                        value={name}
+                                        onChange={this.onChange}
+                                    />
+                                    <TextInputGroup
+                                        label="E-Mail"
+                                        name="email"
+                                        type="email"
+                                        placeholder="Enter E-Mail"
+                                        value={email}
+                                        onChange={this.onChange}
+                                    />
+                                    <TextInputGroup
+                                        label="Phone"
+                                        name="phone"
+                                        placeholder="Enter Phone Number"
+                                        value={phone}
+                                        onChange={this.onChange}
+                                    />
                                     <input
                                         type="submit"
                                         value="Add Contact"
