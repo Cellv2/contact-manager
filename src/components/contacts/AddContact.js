@@ -34,7 +34,7 @@ export class AddContact extends Component {
             this.setState({ errors: { email: "E-Mail is required" } });
             return;
         }
-        
+
         if (phone === "") {
             this.setState({ errors: { phone: "Phone Number is required" } });
             return;
