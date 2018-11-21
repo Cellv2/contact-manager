@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import uuid from "uuid";
+import axios from "axios";
 
 import { Consumer } from "../../context";
 import TextInputGroup from "../layout/TextInputGroup";
@@ -42,13 +42,14 @@ export class AddContact extends Component {
 
         //ES6 syntax, if key and value are the same, you don't need to do name:name, email:email etc.
         const newContact = {
-            id: uuid(),
             name,
             email,
             phone
         };
 
-        dispatch({ type: "ADD_CONTACT", payload: newContact });
+        axios
+            .post("https://jsonplaceholder.typicode.com/users", newContact)
+            .then(res => dispatch({ type: "ADD_CONTACT", payload: res.data }));
 
         //clear state on form submit
         this.setState({ name: "", email: "", phone: "", errors: {} });
