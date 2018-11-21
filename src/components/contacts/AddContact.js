@@ -49,7 +49,7 @@ export class AddContact extends Component {
 
         const res = await axios.post(
             "https://jsonplaceholder.typicode.com/users",
-            newContact
+            newContact //sends the data along with it
         );
         dispatch({ type: "ADD_CONTACT", payload: res.data });
 
