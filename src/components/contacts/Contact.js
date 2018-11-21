@@ -17,10 +17,17 @@ class Contact extends Component {
     //if you use async with an arrow function, the async must be before the params, else you will get an error
     //async onDeleteClick = (id, dispatch) => {
     onDeleteClick = async (id, dispatch) => {
-        //no need to assign to var, response is just an empty object for deletion
-        await axios.delete(`https://jsonplaceholder.typicode.com/users/${id}`); //template literal to allow id of user
+        //NOTE:try/catch is only here to make this application work
+        //as we are using JSONplaceholder, new contacts will not actually get added to their DB
+        //this means that we can't delete anything from the DOM, either, as the DELETE request fails. The try/catch solves this
+        try {
+            //no need to assign to var, response is just an empty object for deletion
+            await axios.delete(`https://jsonplaceholder.typicode.com/users/${id}`); //template literal to allow id of user
+            dispatch({ type: "DELETE_CONTACT", payload: id });
+        } catch(exception) {
+            dispatch({ type: "DELETE_CONTACT", payload: id });
+        }
 
-        dispatch({ type: "DELETE_CONTACT", payload: id });
     };
 
     render() {
