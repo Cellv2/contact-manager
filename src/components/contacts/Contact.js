@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import { Consumer } from "../../context";
 import axios from "axios";
@@ -22,12 +23,13 @@ class Contact extends Component {
         //this means that we can't delete anything from the DOM, either, as the DELETE request fails. The try/catch solves this
         try {
             //no need to assign to var, response is just an empty object for deletion
-            await axios.delete(`https://jsonplaceholder.typicode.com/users/${id}`); //template literal to allow id of user
+            await axios.delete(
+                `https://jsonplaceholder.typicode.com/users/${id}`
+            ); //template literal to allow id of user
             dispatch({ type: "DELETE_CONTACT", payload: id });
-        } catch(exception) {
+        } catch (exception) {
             dispatch({ type: "DELETE_CONTACT", payload: id });
         }
-
     };
 
     render() {
@@ -60,6 +62,17 @@ class Contact extends Component {
                                         dispatch
                                     )}
                                 />
+                                <Link to={`contact/edit/${id}`}>
+                                    <i
+                                        className="fas fa-pencil-alt"
+                                        style={{
+                                            cursor: "pointer",
+                                            float: "right",
+                                            color: "black",
+                                            marginRight: "1rem"
+                                        }}
+                                    />
+                                </Link>
                             </h4>
                             {showContactInfo ? (
                                 <ul className="list-group">

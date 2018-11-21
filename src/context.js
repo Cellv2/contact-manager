@@ -18,6 +18,16 @@ const reducer = (state, action) => {
                 ...state, //gets initial state
                 contacts: [action.payload, ...state.contacts] //adds new contact at the front of the array
             };
+        case "UPDATE_CONTACT":
+            return {
+                ...state, //gets initial state
+                contacts: state.contacts.map(
+                    contact =>
+                        contact.id === action.payload.id //if the contact ID is the same as the payload ID. .id comes from JSONplaceholder automatically
+                            ? (contact = action.payload) //set the contacts state data to be the data in the payload (from axios)
+                            : contact //else just return the existing contact
+                )
+            };
         default:
             return state;
     }
