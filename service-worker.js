@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/3.6.3/workbox-sw.js");
 
 importScripts(
-  "/Cellv2/contact-manager/precache-manifest.2e0b7405dd318d7c24ef75e6c7482530.js"
+  "/contact-manager/precache-manifest.6da525df8ce5de42b5c78c1d83967208.js"
 );
 
 workbox.clientsClaim();
@@ -28,7 +28,7 @@ self.__precacheManifest = [].concat(self.__precacheManifest || []);
 workbox.precaching.suppressWarnings();
 workbox.precaching.precacheAndRoute(self.__precacheManifest, {});
 
-workbox.routing.registerNavigationRoute("/Cellv2/contact-manager/index.html", {
+workbox.routing.registerNavigationRoute("/contact-manager/index.html", {
   
   blacklist: [/^\/_/,/\/[^\/]+\.[^\/]+$/],
 });
